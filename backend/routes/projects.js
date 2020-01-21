@@ -8,23 +8,16 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const {rname, rdescription, rstartDate, rendDate, rcoffeesAmount, rusername} = req.body;
-
-    const name = rname;
-    const description = rdescription;
-    const startDate = Date.parse(rstartDate);
-    const endDate = Date.parse(rendDate);
-    const coffeesAmount = Number(rcoffeesAmount);
-    const username = rusername;
+    const {name, description, startDate, endDate, coffeesAmount, username} = req.body;
 
     const newProject = new Project({
         name,
         description,
-        startDate,
-        endDate,
-        coffeesAmount,
+        startDate: Date.parse(startDate),
+        endDate: Date.parse(endDate),
+        coffeesAmount: Number(coffeesAmount),
         username,
-    })
+    });
 
     newProject.save()
         .then(() => {res.json('Project Added!')})
