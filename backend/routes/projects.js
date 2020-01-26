@@ -24,4 +24,12 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 })
 
+router.route('/update').post((req, res) => {
+
+}) 
+
+router.route('/delete').delete((req, res) => {
+    
+})
+
 module.exports = router;
