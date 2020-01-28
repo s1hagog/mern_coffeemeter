@@ -24,12 +24,34 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 })
 
-router.route('/update').post((req, res) => {
+router.route('/:id').get((req, res) => {
+    Project.findById(req.params.id)
+        .then(project => res.json(project))
+        .catch(err => res.status(400).json('Error:' + err));
+})
 
-}) 
+router.route('/:id').delete((req, res) => {
+    Project.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Exercise deleted'))
+        .catch(err => res.status(400).json('Error:' + err));
+})
 
-router.route('/delete').delete((req, res) => {
-    
+router.route('/update/:id').post((req, res) => {
+    Project.findById(req.params.id)
+        .then(project => {
+            const {name, description, startDate, endDate, coffeesAmount, username} = req.body;
+            project.name = name;
+            project.description = description;
+            project.startDate = Date.parse(startDate);
+            project.endDate = Date.parse(endDate);
+            project.coffeesAmount = Number(coffeesAmount);
+            project.username = username;
+
+            project.save()
+                .then(() => res.json('Project Updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err))
 })
 
 module.exports = router;
