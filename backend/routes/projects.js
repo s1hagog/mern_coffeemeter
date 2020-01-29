@@ -54,4 +54,18 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
+router.route('/:id').patch((req, res) => {
+    const id = req.params.id;
+    const updateOps = {};
+
+    for(const ops of req.body){
+        updateOps[ops.propName] = ops.value;
+    }
+
+    Project.update({_id: id}, {$set: updateOps})
+        .exec()
+        .then(() => res.json('Project Custom fields Updated'))
+        .catch(err => res.status(400).json('Error: ' + err))
+});
+
 module.exports = router;
