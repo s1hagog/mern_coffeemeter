@@ -6,9 +6,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="App">
-      Hello world
-    </div>
+    <Router>
+      <Route path="/" exact component={ProjectList} />
+      <Route path="/edit/:id" component={EditProject} />
+      <Route path="/create" component={CreateProject} />
+      <Route path="/user" component={CreateUser} />
+    </Router>
   );
 }
 
