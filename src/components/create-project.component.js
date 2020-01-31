@@ -16,7 +16,6 @@ const CreateProject = (props) => {
         fetch('http://localhost:5000/users/')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.length > 0){
                     setusers(data.map(user => user.username))
                     setusername(data[0].username);
@@ -36,13 +35,12 @@ const CreateProject = (props) => {
             username,
         }
 
-        console.log(project);
-
         fetch('http://localhost:5000/projects/add', {
             headers: {"Content-Type": "application/json; charset=utf-8"},
             method: 'POST',
             body: JSON.stringify(project)})
-            .then(res => console.log(res))
+            .then(res => res.json())
+            .then(d => console.log(d))
             .catch(err => console.log(err.json));
     }
 
@@ -68,7 +66,10 @@ const CreateProject = (props) => {
             </div>
             <div className="form-group">
                 <label htmlFor="isprojectUser">Select User</label>
-                <select className="form-control" id="isprojectUser">
+                <select className="form-control" id="isprojectUser"
+                    onChange={e => setusername(e.target.value)}
+                    value={username}
+                >
                     {
                         users.map(user => 
                         (
