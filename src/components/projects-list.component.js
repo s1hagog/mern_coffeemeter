@@ -14,8 +14,12 @@ const ProjectThumbnail = (props) => {
               <p className="card-text">{description}</p>
               <div className="d-flex justify-content-between align-items-center">
                 <div className="btn-group">
-                  <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+                    <Link to={`/edit/${_id}`}>
+                        <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                    </Link>
+                    <Link to={`/edit/${_id}`}>
+                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+                    </Link>
                 </div>
                 <small className="text-muted"><a href="#" onClick={() => {props.deleteProject(_id)}}>Delete</a></small>
               </div>
