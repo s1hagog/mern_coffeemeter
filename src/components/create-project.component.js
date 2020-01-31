@@ -25,6 +25,13 @@ const CreateProject = (props) => {
         }
 
         console.log(project);
+
+        fetch('http://localhost:5000/projects/add', {
+            headers: {"Content-Type": "application/json; charset=utf-8"},
+            method: 'POST',
+            body: JSON.stringify(project)})
+            .then(res => console.log(res))
+            .catch(err => console.log(err.json));
     }
 
     return (
