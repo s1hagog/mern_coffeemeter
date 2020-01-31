@@ -28,7 +28,7 @@ const CreateProject = (props) => {
     }
 
     return (
-        <form style={{marginTop: 2 + 'em'}} onSubmit={onsubmit}>
+        <form onSubmit={onsubmit}>
             <div className="form-group">
                 <label htmlFor="iprojectName">Project Name</label>
                 <input type="text" className="form-control" id="iprojectName" placeholder="Enter project name here"
@@ -76,7 +76,7 @@ const CreateProject = (props) => {
                     onChange={date => setendDate(date)}
                 />
             </div>
-            <button className="btn btn-primary">Submit</button>
+            <button className="btn btn-primary">Create</button>
         </form>
     )
 }
