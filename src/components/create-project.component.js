@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
 
 const CreateProject = (props) => {
 
@@ -58,14 +60,20 @@ const CreateProject = (props) => {
             </div>
             <div className="form-group">
                 <label htmlFor="iprojectStartDate">Project Start Date</label>
-                <input type="date" className="form-control" id="iprojectStartDate" 
-                    onBlur={e => setstartDate(e.target.value)}
+                <DatePicker
+                    id="iprojectStartDate"
+                    className="form-control"
+                    selected={startDate}
+                    onChange={date => setstartDate(date)}
                 />
             </div>
             <div className="form-group">
                 <label htmlFor="iprojectEndDate">Project End Date</label>
-                <input type="date" className="form-control" id="iprojectEndDate" 
-                    onBlur={e => setendDate(e.target.value)}
+                <DatePicker
+                    id="iprojectEndDate"
+                    className="form-control"
+                    selected={endDate}
+                    onChange={date => setendDate(date)}
                 />
             </div>
             <button className="btn btn-primary">Submit</button>
