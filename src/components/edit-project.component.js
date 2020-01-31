@@ -48,7 +48,7 @@ export default class EditProject extends Component {
                 this.setState({
                     name,
                     description,
-                    coffeesAmount: new Number(coffeesAmount),
+                    coffeesAmount: Number(coffeesAmount),
                     username,
                     startDate: new Date(startDate),
                     endDate: new Date(endDate),

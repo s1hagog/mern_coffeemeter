@@ -21,7 +21,7 @@ const ProjectThumbnail = (props) => {
                         <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
                     </Link>
                 </div>
-                <small className="text-muted"><a href="#" onClick={() => {props.deleteProject(_id)}}>Delete</a></small>
+                <small className="text-muted"><button onClick={() => {props.deleteProject(_id)}}>Delete</button></small>
               </div>
             </div>
           </div>
