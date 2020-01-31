@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -9,8 +9,20 @@ const CreateProject = (props) => {
     const [startDate, setstartDate] = useState(new Date());
     const [endDate, setendDate] = useState(new Date());
     const [coffeesAmount, setcoffeesAmount] = useState(0);
-    const [username, setusername] = useState('testuser123')
-    const [users, setusers] = useState(['test user']);
+    const [username, setusername] = useState('')
+    const [users, setusers] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users/')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.length > 0){
+                    setusers(data.map(user => user.username))
+                    setusername(data[0].username);
+                }
+            })
+    }, [])
 
     const onsubmit = (e) => {
         e.preventDefault();
