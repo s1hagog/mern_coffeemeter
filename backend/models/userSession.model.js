@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const userSessionSchema = new Schema({
     userId: {
-        type: Number,
+        type: String,
         required: true,
-        default: -1,
+        default: '-1',
     },
     isDeleted: {
         type: Boolean,
@@ -19,4 +19,4 @@ const userSessionSchema = new Schema({
 
 const UserSession = mongoose.model('UserSession', userSessionSchema);
 
-module.exports(UserSession);
+module.exports = UserSession;
