@@ -78,7 +78,7 @@ router.route('/verify').get((req, res) => {
             //practically impossible
         }
         if(sessions.length == 1){
-            res.json('All good');
+            res.json(sessions);
         }
 
     }).catch(err => {

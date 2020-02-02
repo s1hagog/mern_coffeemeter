@@ -10,13 +10,15 @@ import EditProject from './components/edit-project.component';
 import ProjectsList from './components/projects-list.component';
 import ProjectCoffees from './components/project_coffees.component';
 import TestRoute from './components/test.component';
+import LoginUser from './components/login-user.component';
 
 function App() {
   return (
     <Router>
       <Navbar />
       <div className="container">
-        <Route path="/" exact component={ProjectsList} />
+        <Route path="/" exact component={LoginUser} />
+        <Route path="/projects" component={ProjectsList} />
         <Route path="/edit/:id" component={EditProject} />
         <Route path="/coffees/:id" component={ProjectCoffees}/>
         <Route path="/create" component={CreateProject} />
