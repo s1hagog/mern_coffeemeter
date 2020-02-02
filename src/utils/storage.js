@@ -6,7 +6,7 @@ export function getFromStrorage(key){
     try{
         const valueStr = localStorage.getItem(key);
         if(valueStr){
-            return (valueStr);
+            return JSON.parse(valueStr);
         }else{
             console.log('Local storage for this key is empty!');
             return null;

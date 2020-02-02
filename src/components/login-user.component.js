@@ -6,16 +6,21 @@ const LoginUser = () => {
 
     const [isLoading, setisLoading] = useState(true);
     const [signUpError, setsignUpError] = useState('');
-    const [signInError, setsignInError] = useState('');
+    const [signInError, setsignInError] = useState(false);
     const [token, settoken] = useState('');
     const [username, setusername] = useState('');
     const [password, setpassword] = useState('');
 
+    const tokenLocalStorageKey = 'coffee_meter_project_auth_token';
+
     useEffect(() => {
-        const localToken = getFromStrorage('coffee_meter_project_auth_token');
-        if(localToken){
+        const localSession = getFromStrorage(tokenLocalStorageKey);
+        console.log(localSession);
+        if(localSession){
+            const localToken = localSession.token;
             axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
                 .then(res => {
+                    console.log(res.data);
                     if(res.data.length == 1){
                         setisLoading(false);
                         settoken(localToken);
@@ -32,7 +37,28 @@ const LoginUser = () => {
         };
     }, [])
 
+    const onsubmit = (e) => {
+        e.preventDefault();
 
+        const user = {
+            username,
+            password,
+        }
+
+        axios.post('http://localhost:5000/account/login', user)
+            .then(res => {
+                console.log(res.data);
+                if(res.data.success){
+                    setInStorage(tokenLocalStorageKey, res.data);
+                    setusername('');
+                    setpassword('');
+                    window.location = '/';
+                }else{
+                    setsignInError(true);
+                }
+            })
+            .catch(err => console.log(err))
+    }
 
     if(isLoading) {
         return (
@@ -56,16 +82,17 @@ const LoginUser = () => {
                         onChange={e => setpassword(e.target.value)}
                     />
                 </div>
+                {
+                    signInError ?
+                    <p>Please check password and usernmae</p>
+                    : null
+                }
                 <button className="btn btn-primary">Sign In</button>
             </form>
         )
+    }else{
+        window.location = '/projects';
     }
-
-    return(
-        <div>
-            <p>Signed</p>
-        </div>
-    )
 }
 
 export default LoginUser;
