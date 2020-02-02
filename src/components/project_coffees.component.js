@@ -18,12 +18,12 @@ const ProjectCoffees = (props) => {
                 setCoffeesAmount(coffeesAmount);
             })
             .catch(err => console.log(err));
-    }, [])
+    }, [id])
 
     const addOneCoffee = () => {
         axios.patch(`http://localhost:5000/projects/add-coffee/${id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setCoffeesAmount(coffeesAmount + 1);
             })
             .catch(err => console.log(err));
@@ -32,7 +32,7 @@ const ProjectCoffees = (props) => {
     return(
         <div>
             <h1>{name}</h1>
-            <img src={coffeeSteam}/>
+            {/* <img src={coffeeSteam}/> */}
             <input type="image" src={coffeeImg} alt="Coffee Cup" onClick={addOneCoffee} />
             <h2>{coffeesAmount}</h2>
         </div>
