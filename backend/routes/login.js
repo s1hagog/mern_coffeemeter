@@ -60,6 +60,45 @@ router.route('/login').post((req, res) =>{
             })
             .catch(err => res.status(400).json('Session didnt start: ' + err));
     })
-})
+});
+
+router.route('/verify').get((req, res) => {
+    const {query} = req;
+    const {token} = query;
+
+    UserSession.find({
+        _id: token,
+        isDeleted: false,
+    }).then(sessions => {
+        if(sessions.length == 0){
+            res.json('Zero session token found');
+        }
+        if(sessions.length > 1){
+            res.json('More than 1 session token found');
+            //practically impossible
+        }
+        if(sessions.length == 1){
+            res.json('All good');
+        }
+
+    }).catch(err => {
+        res.json('Error: ' + err);
+    });
+});
+
+router.route('/logout').get((req, res) => {
+    const {token} = req.query;
+
+    UserSession.findByIdAndRemove(token, {useFindAndModify: false})
+        .then((sessions) => {
+            if(sessions === null){
+                res.json('Zero session token found');
+            }else{
+                res.json('Session Completely deleted');
+            }
+        }).catch(err => {
+            res.json('Error: ' + err);
+        });
+});
 
 module.exports = router;
