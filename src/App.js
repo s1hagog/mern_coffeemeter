@@ -14,15 +14,23 @@ import TestRoute from './components/test.component';
 function App() {
   return (
     <Router>
+      <Navbar />
       <div className="container">
-        <Navbar />
         <Route path="/" exact component={ProjectsList} />
         <Route path="/edit/:id" component={EditProject} />
         <Route path="/coffees/:id" component={ProjectCoffees}/>
         <Route path="/create" component={CreateProject} />
         <Route path="/user" component={CreateUser} />
         <Route path="/test" component={TestRoute} />
+        <footer>
+        <div>
+          Icons made by 
+          <a href="https://www.flaticon.com/authors/srip" title="srip"> srip </a> 
+          from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div>
+      </footer>
       </div>
+      
     </Router>
   );
 }
