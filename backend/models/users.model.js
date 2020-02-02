@@ -25,9 +25,16 @@ const userSchema = new Schema({
     timestamps: true,
 });
 
-userSchema.methods.generateHash = password => bcrypt.hashSync(password, bcrypt.getSaltSync(8), null);
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.getSaltSync(8), null);
+}
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+}
 
-userSchema.methods.validPAssword = password => bcrypt.compareSync(password, this.password);
+// DO NOT USE ES6 ARROW FUNCTIONS FOR THESE METHODS!!
+// userSchema.methods.generateHash = password => bcrypt.hashSync(password, bcrypt.getSaltSync(8), null);
+// userSchema.methods.validPassword = password => bcrypt.compareSync(password, this.password);
 
 const User = mongoose.model('User', userSchema);
 
