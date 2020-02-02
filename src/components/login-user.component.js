@@ -8,19 +8,22 @@ const LoginUser = () => {
     const [signUpError, setsignUpError] = useState('');
     const [signInError, setsignInError] = useState('');
     const [token, settoken] = useState('');
+    const [username, setusername] = useState('');
+    const [password, setpassword] = useState('');
 
     useEffect(() => {
-        const token = getFromStrorage('coffee_meter_project_auth_token');
-        if(token){
-            axios.get(`http://localhost:5000/account/verify?token=${token}`)
+        const localToken = getFromStrorage('coffee_meter_project_auth_token');
+        if(localToken){
+            axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
                 .then(res => {
                     if(res.data.length == 1){
-                        console.log('Token is correct!')
                         setisLoading(false);
+                        settoken(localToken);
                     }else{
-                        console.log('We need to delete the token')
+                        localStorage.removeItem('coffee_meter_project_auth_token');
+                        setisLoading(false);
                     }
-                })
+                }).catch(err => console.log('Error sending token: ' + err));
         }else{
             setisLoading(false);
         }
@@ -28,6 +31,7 @@ const LoginUser = () => {
             console.log('clean up function')
         };
     }, [])
+
 
 
     if(isLoading) {
@@ -39,9 +43,21 @@ const LoginUser = () => {
     }
     if(!token){
         return(
-            <div>
-                <p>Sign in Sign up</p>
-            </div>
+            <form onSubmit={onsubmit}>
+                <div className="form-group">
+                    <label htmlFor="iusername">Username</label>
+                    <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" required
+                        value={username}
+                        onChange={e => setusername(e.target.value)}
+                    />
+                    <label htmlFor="ipassword">Password</label>
+                    <input type="password" className="form-control" id="ipassword" placeholder="Enter password" autoComplete="current-password" required
+                        value={password}
+                        onChange={e => setpassword(e.target.value)}
+                    />
+                </div>
+                <button className="btn btn-primary">Sign In</button>
+            </form>
         )
     }
 
