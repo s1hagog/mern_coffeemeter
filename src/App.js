@@ -8,6 +8,8 @@ import CreateProject from './components/create-project.component';
 import CreateUser from './components/create-user.component';
 import EditProject from './components/edit-project.component';
 import ProjectsList from './components/projects-list.component';
+import ProjectCoffees from './components/project_coffees.component';
+import TestRoute from './components/test.component';
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
         <Navbar />
         <Route path="/" exact component={ProjectsList} />
         <Route path="/edit/:id" component={EditProject} />
+        <Route path="/coffees/:id" component={ProjectCoffees}/>
         <Route path="/create" component={CreateProject} />
         <Route path="/user" component={CreateUser} />
+        <Route path="/test" component={TestRoute} />
       </div>
     </Router>
   );
