@@ -2,8 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {getFromStrorage, setInStorage} from '../utils/storage';
 import axios from 'axios';
 
-const LoginUser = () => {
 
+import ProjectsList from './projects-list.component';
+
+const LoginUser = () => {
+    
+    const [session, setsession] = useState({});
     const [isLoading, setisLoading] = useState(true);
     const [signUpError, setsignUpError] = useState('');
     const [signInError, setsignInError] = useState(false);
@@ -24,6 +28,7 @@ const LoginUser = () => {
                     if(res.data.length == 1){
                         setisLoading(false);
                         settoken(localToken);
+                        setsession(res.data);
                     }else{
                         localStorage.removeItem('coffee_meter_project_auth_token');
                         setisLoading(false);
@@ -91,7 +96,9 @@ const LoginUser = () => {
             </form>
         )
     }else{
-        window.location = '/projects';
+        return(
+            <ProjectsList session={session}/>
+        )
     }
 }
 
