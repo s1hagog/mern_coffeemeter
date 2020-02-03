@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const Project = require('../models/projects.model');
 
-router.route('/').get((req, res) => {
-    Project.find()
+router.route('/user/:id').get((req, res) => {
+    const userId = req.params.id;
+    Project.find({
+        userId,
+    })
         .then(projects => res.json(projects))
         .catch(err => res.status(400).json('Error: ' + err))
 });

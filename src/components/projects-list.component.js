@@ -48,8 +48,7 @@ export default class ProjectsList extends Component {
         // const {session} = this.props;
         if(this.props.session){
             console.log('rendering from session');
-            this.setState({userId: this.props.session.userId});
-            axios.get('http://localhost:5000/projects/', this.state.userId)
+            axios.get('http://localhost:5000/projects/user/' +  this.props.session.userId)
                 .then(res => {
                     this.setState({projects: res.data});
                 }).catch(err => console.log(err));

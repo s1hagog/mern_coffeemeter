@@ -11,7 +11,7 @@ const CreateProject = (props) => {
     const [endDate, setendDate] = useState(new Date());
     const [coffeesAmount, setcoffeesAmount] = useState(0);
     const [username, setusername] = useState('')
-    const [userID, setuserID] = useState('')
+    const [userId, setuserId] = useState('')
 
     useEffect(() => {
 
@@ -25,11 +25,12 @@ const CreateProject = (props) => {
                             setusername(data.username);
                         }
                     });
-                setuserID(session.userId);
+                setuserId(session.userId);
             }else{
                 window.location = '/'
             }
         }
+        verifyingToken();
     }, [])
 
     const onsubmit = (e) => {
@@ -45,6 +46,8 @@ const CreateProject = (props) => {
             userId,
         }
 
+        console.log(project);
+
         fetch('http://localhost:5000/projects/add', {
             headers: {"Content-Type": "application/json; charset=utf-8"},
             method: 'POST',
@@ -53,7 +56,7 @@ const CreateProject = (props) => {
             .then(d => console.log(d))
             .catch(err => console.log(err.json));
 
-        window.location = '/';
+        // window.location = '/';
     }
 
     return (

@@ -19,16 +19,16 @@ const LoginUser = () => {
 
     useEffect(() => {
         const localSession = getFromStrorage(tokenLocalStorageKey);
-        console.log(localSession);
+        // console.log(localSession);
         if(localSession){
             const localToken = localSession.token;
             axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if(res.data){
+                        setsession(res.data);
                         setisLoading(false);
                         settoken(localToken);
-                        setsession(res.data);
                     }else{
                         localStorage.removeItem('coffee_meter_project_auth_token');
                         setisLoading(false);
@@ -65,6 +65,7 @@ const LoginUser = () => {
             .catch(err => console.log(err))
     }
 
+
     if(isLoading) {
         return (
             <div>
@@ -96,9 +97,16 @@ const LoginUser = () => {
             </form>
         )
     }else{
-        return(
-            <ProjectsList session={session}/>
-        )
+        if(session){
+            console.log('we are here');
+            return(
+                <ProjectsList session={session}/>
+            )
+        }else{
+            return(
+                <p>Something not right here...</p>
+            )
+        }
     }
 }
 
