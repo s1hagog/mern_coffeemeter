@@ -46,39 +46,37 @@ export default class ProjectsList extends Component {
 
     componentDidMount(){
         // const {session} = this.props;
-        const startRender = () => {
-            if(this.props.session){
-                console.log('rendering from session');
-                this.setState({userId: this.props.session.userId});
-                return true;
+        if(this.props.session){
+            console.log('rendering from session');
+            this.setState({userId: this.props.session.userId});
+            axios.get('http://localhost:5000/projects/', this.state.userId)
+                .then(res => {
+                    this.setState({projects: res.data});
+                }).catch(err => console.log(err));
+        }else{
+            const localSession = getFromStrorage(this.tokenLocalStorageKey);
+            if(localSession){
+                console.log('rendering from token');
+                const token = localSession.token;
+                axios.get(`http://localhost:5000/account/verify?token=${token}`)
+                    .then(res => {
+                        if(res.data){
+                            this.setState({userId: res.data.userId});
+                            axios.get('http://localhost:5000/projects/')
+                                .then(res => {
+                                    this.setState({projects: res.data});
+                                }).catch(err => console.log(err));
+                            // return true;
+                        }else{
+                            localStorage.removeItem('coffee_meter_project_auth_token');
+                            window.location = '/';
+                        }
+                    }).catch(err => console.log('Error rendering projects from token: ' + err));
             }else{
-                const localSession = getFromStrorage(this.tokenLocalStorageKey);
-                if(localSession){
-                    console.log('rendering from token');
-                    const token = localSession.token;
-                    axios.get(`http://localhost:5000/account/verify?token=${token}`)
-                        .then(res => {
-                            if(res.data){
-                                this.setState({userId: res.data.userId});
-                                return true;
-                            }else{
-                                localStorage.removeItem('coffee_meter_project_auth_token');
-                            }
-                        }).catch(err => console.log('Error rendering projects from token: ' + err));
-                }else{
-                    console.log('no rendering');
-                }
+                console.log('no rendering');
+                window.location = '/';
             }
         }
-        if(startRender){
-            axios.get('http://localhost:5000/projects/')
-            .then(res => {
-                this.setState({projects: res.data});
-            }).catch(err => console.log(err));
-        }else{
-           // window.location = '/';
-        }
-        
     }
 
     deleteProject(id){
