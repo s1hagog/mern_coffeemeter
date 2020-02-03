@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const {name, description, startDate, endDate, coffeesAmount, username} = req.body;
+    const {name, description, startDate, endDate, coffeesAmount, username, userId} = req.body;
 
     const newProject = new Project({
         name,
@@ -17,6 +17,7 @@ router.route('/add').post((req, res) => {
         endDate: Date.parse(endDate),
         coffeesAmount: Number(coffeesAmount),
         username,
+        userId,
     });
 
     newProject.save()
@@ -39,13 +40,14 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Project.findById(req.params.id)
         .then(project => {
-            const {name, description, startDate, endDate, coffeesAmount, username} = req.body;
+            const {name, description, startDate, endDate, coffeesAmount, username, userId} = req.body;
             project.name = name;
             project.description = description;
             project.startDate = Date.parse(startDate);
             project.endDate = Date.parse(endDate);
             project.coffeesAmount = Number(coffeesAmount);
             project.username = username;
+            project.userId
 
             project.save()
                 .then(() => res.json('Project Updated!'))

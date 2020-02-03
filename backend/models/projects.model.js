@@ -8,7 +8,8 @@ const projectSchema = new Schema({
     startDate: {type: Date, required: true},
     endDate: {type: Date},
     coffeesAmount: {type: Number},
-    username: {type: String, required: true}
+    username: {type: String, required: true},
+    userId: {type: String, required: true}
 }, {
     timestamps: true,
 });

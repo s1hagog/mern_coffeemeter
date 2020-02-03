@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker.css';
+import {checkToken, verifyToken} from '../utils/token-verification';
 
 const CreateProject = (props) => {
 
@@ -10,17 +11,25 @@ const CreateProject = (props) => {
     const [endDate, setendDate] = useState(new Date());
     const [coffeesAmount, setcoffeesAmount] = useState(0);
     const [username, setusername] = useState('')
-    const [users, setusers] = useState([]);
+    const [userID, setuserID] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/')
-            .then(res => res.json())
-            .then(data => {
-                if (data.length > 0){
-                    setusers(data.map(user => user.username))
-                    setusername(data[0].username);
-                }
-            })
+
+        async function verifyingToken(){
+            const session = await verifyToken();
+            if(session){
+                fetch(`http://localhost:5000/users/${session.userId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data){
+                            setusername(data.username);
+                        }
+                    });
+                setuserID(session.userId);
+            }else{
+                window.location = '/'
+            }
+        }
     }, [])
 
     const onsubmit = (e) => {
@@ -33,6 +42,7 @@ const CreateProject = (props) => {
             endDate,
             coffeesAmount,
             username,
+            userId,
         }
 
         fetch('http://localhost:5000/projects/add', {
@@ -65,20 +75,6 @@ const CreateProject = (props) => {
                 <input type="number" className="form-control" id="iprojectCoffeesAmt" 
                     onBlur={e => setcoffeesAmount(e.target.value)}
                 />
-            </div>
-            <div className="form-group">
-                <label htmlFor="isprojectUser">Select User</label>
-                <select className="form-control" id="isprojectUser"
-                    onChange={e => setusername(e.target.value)}
-                    value={username}
-                >
-                    {
-                        users.map(user => 
-                        (
-                            <option key={user} value={user}>{user}</option>
-                        ))
-                    }
-                </select>
             </div>
             <div className="form-group">
                 <label htmlFor="iprojectStartDate">Project Start Date</label>
