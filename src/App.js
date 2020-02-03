@@ -11,6 +11,7 @@ import ProjectsList from './components/projects-list.component';
 import ProjectCoffees from './components/project_coffees.component';
 import TestRoute from './components/test.component';
 import LoginUser from './components/login-user.component';
+import SignOutUser from './components/sign-out-user.component';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/create" component={CreateProject} />
         <Route path="/user" component={CreateUser} />
         <Route path="/test" component={TestRoute} />
+        <Route path="/account/sign-out" component={SignOutUser} />
         <footer>
         <div>
           Icons made by 
