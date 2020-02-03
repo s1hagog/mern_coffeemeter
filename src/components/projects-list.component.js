@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import {getFromStrorage} from '../utils/storage';
 import axios from 'axios';
 
 const ProjectThumbnail = (props) => {
@@ -33,17 +34,51 @@ const ProjectThumbnail = (props) => {
 export default class ProjectsList extends Component {
     constructor(props) {
         super(props);
-
         this.deleteProject = this.deleteProject.bind(this);
 
-        this.state = {projects: []};
+        this.state = {
+            projects: [],
+            userId: '',
+            
+        };
+        this.tokenLocalStorageKey = 'coffee_meter_project_auth_token';
     }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/projects/')
+        // const {session} = this.props;
+        const startRender = () => {
+            if(this.props.session){
+                console.log('rendering from session');
+                this.setState({userId: this.props.session.userId});
+                return true;
+            }else{
+                const localSession = getFromStrorage(this.tokenLocalStorageKey);
+                if(localSession){
+                    console.log('rendering from token');
+                    const token = localSession.token;
+                    axios.get(`http://localhost:5000/account/verify?token=${token}`)
+                        .then(res => {
+                            if(res.data){
+                                this.setState({userId: res.data.userId});
+                                return true;
+                            }else{
+                                localStorage.removeItem('coffee_meter_project_auth_token');
+                            }
+                        }).catch(err => console.log('Error rendering projects from token: ' + err));
+                }else{
+                    console.log('no rendering');
+                }
+            }
+        }
+        if(startRender){
+            axios.get('http://localhost:5000/projects/')
             .then(res => {
                 this.setState({projects: res.data});
             }).catch(err => console.log(err));
+        }else{
+           // window.location = '/';
+        }
+        
     }
 
     deleteProject(id){

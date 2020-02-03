@@ -9,7 +9,7 @@ const LoginUser = () => {
     
     const [session, setsession] = useState({});
     const [isLoading, setisLoading] = useState(true);
-    const [signUpError, setsignUpError] = useState('');
+    // const [signUpError, setsignUpError] = useState('');
     const [signInError, setsignInError] = useState(false);
     const [token, settoken] = useState('');
     const [username, setusername] = useState('');
@@ -25,7 +25,7 @@ const LoginUser = () => {
             axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
                 .then(res => {
                     console.log(res.data);
-                    if(res.data.length == 1){
+                    if(res.data){
                         setisLoading(false);
                         settoken(localToken);
                         setsession(res.data);

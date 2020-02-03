@@ -66,19 +66,14 @@ router.route('/verify').get((req, res) => {
     const {query} = req;
     const {token} = query;
 
-    UserSession.find({
+    UserSession.findOne({
         _id: token,
         isDeleted: false,
-    }).then(sessions => {
-        if(sessions.length == 0){
+    }).then(session => {
+        if(session){
+            res.json(session);
+        }else{
             res.json('Zero session token found');
-        }
-        if(sessions.length > 1){
-            res.json('More than 1 session token found');
-            //practically impossible
-        }
-        if(sessions.length == 1){
-            res.json(sessions);
         }
 
     }).catch(err => {
