@@ -39,7 +39,6 @@ router.route('/login').post((req, res) =>{
             })
         }
         const user = users[0];
-        console.log(users.length);
         if(!user.validPassword(password)){
             return res.send({
                 success: false,
