@@ -8,7 +8,6 @@ export function verifyToken(){
         const token = localSession.token;
         const promise = axios.get(`http://localhost:5000/account/verify?token=${token}`)
         .then(res => {
-            console.log(res);
             if(res.data){
                 return res.data
             }else{

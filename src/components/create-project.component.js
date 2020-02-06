@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import {checkToken, verifyToken} from '../utils/token-verification';
+import {verifyToken} from '../utils/token-verification';
 
 const CreateProject = (props) => {
 

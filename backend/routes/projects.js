@@ -67,7 +67,7 @@ router.route('/:id').patch((req, res) => {
         updateOps[ops.propName] = ops.value;
     }
 
-    Project.update({_id: id}, {$set: updateOps})
+    Project.updateOne({_id: id}, {$set: updateOps})
         .exec()
         .then(() => res.json('Project Custom fields Updated'))
         .catch(err => res.status(400).json('Error: ' + err))
@@ -76,7 +76,7 @@ router.route('/:id').patch((req, res) => {
 router.route('/add-coffee/:id').patch((req, res) => {
     const id = req.params.id;
 
-    Project.update({_id: id}, {$inc: {coffeesAmount: 1}})
+    Project.updateOne({_id: id}, {$inc: {coffeesAmount: 1}})
         .exec()
         .then(() => res.json('1 Coffee added to the total coffees count'))
         .catch(err => res.status(400).json('Error: ' + err))
