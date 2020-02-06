@@ -61,7 +61,7 @@ export default class ProjectsList extends Component {
                     .then(res => {
                         if(res.data){
                             this.setState({userId: res.data.userId});
-                            axios.get('http://localhost:5000/projects/')
+                            axios.get('http://localhost:5000/projects/user/' + this.state.userId)
                                 .then(res => {
                                     this.setState({projects: res.data});
                                 }).catch(err => console.log(err));
