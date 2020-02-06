@@ -17,16 +17,25 @@ const Navbar = () => {
                         <Link className="nav-link" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/projects">Projects List</Link>
+                        {
+                            (localStorage.getItem('coffee_meter_project_auth_token'))
+                            ? <Link className="nav-link" to="/projects">Projects List</Link>
+                            : <Link className="nav-link" to="/">Sign In</Link>
+                        }
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/create">CreateProject</Link>
+                        {
+                            (localStorage.getItem('coffee_meter_project_auth_token'))
+                            ? <Link className="nav-link" to="/projects">Create Project</Link>
+                            : <Link className="nav-link" to="/user">Sign Up</Link>
+                        }
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/user">CreateUser</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/account/sign-out">Sign Out</Link>
+                        {
+                            (localStorage.getItem('coffee_meter_project_auth_token'))
+                            ? <Link className="nav-link" to="/account/sign-out">Sign Out</Link>
+                            : null
+                        }
                     </li>
                 </ul>
             </div>
