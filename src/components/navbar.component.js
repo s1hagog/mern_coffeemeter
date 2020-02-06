@@ -26,7 +26,7 @@ const Navbar = () => {
                     <li className="nav-item">
                         {
                             (localStorage.getItem('coffee_meter_project_auth_token'))
-                            ? <Link className="nav-link" to="/projects">Create Project</Link>
+                            ? <Link className="nav-link" to="/create">Create Project</Link>
                             : <Link className="nav-link" to="/user">Sign Up</Link>
                         }
                     </li>
