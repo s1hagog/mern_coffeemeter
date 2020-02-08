@@ -83,28 +83,20 @@ router.route('/verify').get((req, res) => {
 router.route('/logout').get((req, res) => {
     const {token} = req.query;
 
-    UserSession.deleteMany({userId: token})
-        .then(data => {
-            res.json('The token was: ' + token)
-            res.json(data);
-        })
-        .catch(err => res.json('Error deleting session in a backend: ' + err));
-
-    // UserSession.findByIdAndRemove(token, {useFindAndModify: false})
-    //     .then((sessions) => {
-    //         if(sessions === null){
-    //             res.json('Zero session token found');
-    //         }else{
-    //             res.json('Session Completely deleted');
-    //         }
-    //     }).catch(err => {
-    //         res.json('Error: ' + err);
-    //     });
+    UserSession.findByIdAndRemove(token, {useFindAndModify: false})
+        .then((sessions) => {
+            if(sessions === null){
+                res.json('Zero session token found');
+            }else{
+                res.json('Session Completely deleted');
+            }
+        }).catch(err => {
+            res.json('Error: ' + err);
+        });
 });
 
 router.route('/delete-session').delete((req, res) => {
     const userId = req.body.userId;
-    console.log(req.body);
     UserSession.deleteMany({userId})
         .then(data => {
             res.json(data);

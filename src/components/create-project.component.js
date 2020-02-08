@@ -56,7 +56,7 @@ const CreateProject = (props) => {
             .then(d => console.log(d))
             .catch(err => console.log(err.json));
 
-        // window.location = '/';
+        window.location = '/';
     }
 
     return (
