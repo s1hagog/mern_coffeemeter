@@ -30,7 +30,7 @@ const ProjectCoffees = (props) => {
     }
 
     return(
-        <div>
+        <div className="main-coffee">
             <h1>{name}</h1>
             {/* <img src={coffeeSteam}/> */}
             <input type="image" src={coffeeImg} alt="Coffee Cup" onClick={addOneCoffee} />
