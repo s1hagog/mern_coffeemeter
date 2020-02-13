@@ -8,7 +8,7 @@ const CreateProject = (props) => {
     const [name, setName] = useState('');
     const [description, setdescription] = useState('');
     const [startDate, setstartDate] = useState(new Date());
-    const [endDate, setendDate] = useState(new Date());
+    // const [endDate, setendDate] = useState(new Date());
     const [coffeesAmount, setcoffeesAmount] = useState(0);
     const [username, setusername] = useState('')
     const [userId, setuserId] = useState('')
@@ -40,7 +40,7 @@ const CreateProject = (props) => {
             name,
             description,
             startDate,
-            endDate,
+            // endDate,
             coffeesAmount,
             username,
             userId,
@@ -88,7 +88,7 @@ const CreateProject = (props) => {
                     onChange={date => setstartDate(date)}
                 />
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label htmlFor="iprojectEndDate">Project End Date</label>
                 <DatePicker
                     id="iprojectEndDate"
@@ -96,7 +96,7 @@ const CreateProject = (props) => {
                     selected={endDate}
                     onChange={date => setendDate(date)}
                 />
-            </div>
+            </div> */}
             <button className="btn btn-primary">Create</button>
         </form>
     )

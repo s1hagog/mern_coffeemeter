@@ -17,7 +17,7 @@ router.route('/add').post((req, res) => {
         name,
         description,
         startDate: Date.parse(startDate),
-        endDate: Date.parse(endDate),
+        // endDate: Date.parse(endDate),
         coffeesAmount: Number(coffeesAmount),
         username,
         userId,
@@ -47,10 +47,10 @@ router.route('/update/:id').post((req, res) => {
             project.name = name;
             project.description = description;
             project.startDate = Date.parse(startDate);
-            project.endDate = Date.parse(endDate);
+            // project.endDate = Date.parse(endDate);
             project.coffeesAmount = Number(coffeesAmount);
             project.username = username;
-            project.userId
+            // project.userId
 
             project.save()
                 .then(() => res.json('Project Updated!'))
