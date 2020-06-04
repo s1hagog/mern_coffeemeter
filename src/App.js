@@ -26,6 +26,7 @@ function App() {
         <Route path="/user" component={CreateUser} />
         <Route path="/test" component={TestRoute} />
         <Route path="/account/sign-out" component={SignOutUser} />
+        <Route path="/forgot-password" component={TestRoute} />
         <footer>
         <div>
           Icons made by 
