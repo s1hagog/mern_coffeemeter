@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {getFromStrorage, setInStorage} from '../utils/storage';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -87,6 +88,8 @@ const LoginUser = () => {
                         value={password}
                         onChange={e => setpassword(e.target.value)}
                     />
+
+                    <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
                 {
                     signInError ?
