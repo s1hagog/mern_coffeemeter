@@ -12,6 +12,7 @@ import ProjectCoffees from './components/project_coffees.component';
 import TestRoute from './components/test.component';
 import LoginUser from './components/login-user.component';
 import SignOutUser from './components/sign-out-user.component';
+import ForgotPassword from './components/forgot-password.component';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="/user" component={CreateUser} />
         <Route path="/test" component={TestRoute} />
         <Route path="/account/sign-out" component={SignOutUser} />
-        <Route path="/forgot-password" component={TestRoute} />
+        <Route path="/forgot-password" component={ForgotPassword} />
         <footer>
         <div>
           Icons made by 
