@@ -93,7 +93,7 @@ const LoginUser = () => {
                 </div>
                 {
                     signInError ?
-                    <p>Please check password and usernmae</p>
+                    <p>Please check password and username</p>
                     : null
                 }
                 <button className="btn btn-primary">Sign In</button>
