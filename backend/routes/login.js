@@ -2,6 +2,17 @@ const router = require('express').Router();
 const User = require('../models/users.model');
 const UserSession = require('../models/userSession.model');
 
+router.route('/find-user').post((req,res) => {
+    const username = req.body;
+    
+    if(!username){
+        return res.send({
+            success: false,
+            message: 'Username cannot be blank',
+        })
+    }
+})
+
 router.route('/login').post((req, res) =>{
     const {username, password} = req.body;
     if(!username){

@@ -46,10 +46,7 @@ const LoginUser = () => {
     const onsubmit = (e) => {
         e.preventDefault();
 
-        const user = {
-            username,
-            password,
-        }
+        const user = ''
 
         axios.post('http://localhost:5000/account/login', user)
             .then(res => {
@@ -78,25 +75,19 @@ const LoginUser = () => {
         return(
             <form onSubmit={onsubmit}>
                 <div className="form-group">
-                    <label htmlFor="iusername">Username</label>
+                    <label htmlFor="iusername">Your Username</label>
                     <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" required
                         value={username}
                         onChange={e => setusername(e.target.value)}
                     />
-                    <label htmlFor="ipassword">Password</label>
-                    <input type="password" className="form-control" id="ipassword" placeholder="Enter password" autoComplete="current-password" required
-                        value={password}
-                        onChange={e => setpassword(e.target.value)}
-                    />
-
-                    <Link to="/forgot-password">Forgot Password?</Link>
+                    
                 </div>
                 {
                     signInError ?
                     <p>Please check password and username</p>
                     : null
                 }
-                <button className="btn btn-primary">Sign In</button>
+                <button className="btn btn-primary">Check</button>
             </form>
         )
     }else{
