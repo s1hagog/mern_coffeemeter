@@ -45,10 +45,8 @@ const LoginUser = () => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-
-        const user = ''
-
-        axios.post('http://localhost:5000/account/login', user)
+        console.log('sdfjksfjsfjlksj')
+        axios.post('http://localhost:5000/account/find-user', username)
             .then(res => {
                 console.log(res.data);
                 if(res.data.success){
@@ -57,6 +55,7 @@ const LoginUser = () => {
                     setpassword('');
                     window.location = '/';
                 }else{
+                    console.log('Nopeeeeeeeeeeeeeee')
                     setsignInError(true);
                 }
             })
@@ -76,7 +75,7 @@ const LoginUser = () => {
             <form onSubmit={onsubmit}>
                 <div className="form-group">
                     <label htmlFor="iusername">Your Username</label>
-                    <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" required
+                    <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" 
                         value={username}
                         onChange={e => setusername(e.target.value)}
                     />

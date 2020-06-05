@@ -3,8 +3,8 @@ const User = require('../models/users.model');
 const UserSession = require('../models/userSession.model');
 
 router.route('/find-user').post((req,res) => {
-    const username = req.body;
-    
+    const {username} = req.body;
+
     if(!username){
         return res.send({
             success: false,
