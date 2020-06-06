@@ -15,7 +15,8 @@ const LoginUser = () => {
     const [token, settoken] = useState('');
     const [username, setusername] = useState('');
     const [password, setpassword] = useState('');
-
+    const [usernameFound, setUsernameFound] = useState(false);
+ 
     const tokenLocalStorageKey = 'coffee_meter_project_auth_token';
 
     useEffect(() => {
@@ -45,7 +46,6 @@ const LoginUser = () => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-        console.log('sdfjksfjsfjlksj')
         axios.post('http://localhost:5000/account/find-user', username)
             .then(res => {
                 console.log(res.data);
@@ -74,12 +74,27 @@ const LoginUser = () => {
         return(
             <form onSubmit={onsubmit}>
                 <div className="form-group">
-                    <label htmlFor="iusername">Your Username</label>
-                    <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" 
-                        value={username}
-                        onChange={e => setusername(e.target.value)}
-                    />
-                    
+                    {
+                        !usernameFound ?
+                        <>
+                            <label htmlFor="iusername">Your Username</label>
+                            <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" 
+                                value={username}
+                                onChange={e => setusername(e.target.value)}
+                            />
+                        </>
+                        :null
+                    }
+                    {
+                        usernameFound ?
+                        <>
+                        <label htmlFor="ipassword">Password</label>
+                        <input type="password" className="form-control" id="ipassword" placeholder="Enter password" autoComplete="current-password" required
+                            value={password}
+                            onChange={e => setpassword(e.target.value)}
+                        /></>
+                        : null
+                    }
                 </div>
                 {
                     signInError ?
