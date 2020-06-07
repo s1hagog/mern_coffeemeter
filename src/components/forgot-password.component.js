@@ -46,10 +46,8 @@ const LoginUser = () => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-        console.log(username)
         axios.post('http://localhost:5000/account/find-user', {username})
             .then(res => {
-                console.log(res.data);
                 if(res.data.success){
                     // setInStorage(tokenLocalStorageKey, res.data);
                     // setusername('');

@@ -5,7 +5,6 @@ const UserSession = require('../models/userSession.model');
 router.route('/find-user').post((req,res) => {
     const {username} = req.body
 
-    return;
     if(!username){
         return res.send({
             success: false,
