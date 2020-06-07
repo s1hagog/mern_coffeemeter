@@ -46,16 +46,18 @@ const LoginUser = () => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/account/find-user', username)
+        console.log(username)
+        axios.post('http://localhost:5000/account/find-user', {username})
             .then(res => {
                 console.log(res.data);
                 if(res.data.success){
-                    setInStorage(tokenLocalStorageKey, res.data);
-                    setusername('');
-                    setpassword('');
-                    window.location = '/';
+                    // setInStorage(tokenLocalStorageKey, res.data);
+                    // setusername('');
+                    // setpassword('');
+                    // window.location = '/';
+                    console.log(res.data)
                 }else{
-                    console.log('Nopeeeeeeeeeeeeeee')
+                    console.log(res.data)
                     setsignInError(true);
                 }
             })

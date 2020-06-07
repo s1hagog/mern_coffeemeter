@@ -3,14 +3,44 @@ const User = require('../models/users.model');
 const UserSession = require('../models/userSession.model');
 
 router.route('/find-user').post((req,res) => {
-    const {username} = req.body;
+    const {username} = req.body
 
+    return;
     if(!username){
         return res.send({
             success: false,
             message: 'Username cannot be blank',
         })
     }
+
+    User.find({
+        username
+    }, (err, users) => {
+        if(err){
+            return res.send({
+                success: false,
+                message: 'Username is wrong',
+            });
+        }
+        if(users.length > 1){
+            return res.send({
+                success: false,
+                message: 'More than one user found',
+            })
+        }
+        if(users.length == 0){
+            return res.send({
+                success: false, 
+                message: 'Zero users found',
+            })
+        }
+        if(users.length == 1){
+            return res.send({
+                success: true,
+                message: 'User Found'
+            })
+        }
+    })
 })
 
 router.route('/login').post((req, res) =>{
