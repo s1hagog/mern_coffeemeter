@@ -49,11 +49,7 @@ const LoginUser = () => {
         axios.post('http://localhost:5000/account/find-user', {username})
             .then(res => {
                 if(res.data.success){
-                    // setInStorage(tokenLocalStorageKey, res.data);
-                    // setusername('');
-                    // setpassword('');
-                    // window.location = '/';
-                    console.log(res.data)
+                    setUsernameFound(true);
                 }else{
                     console.log(res.data)
                     setsignInError(true);
@@ -78,7 +74,7 @@ const LoginUser = () => {
                         !usernameFound ?
                         <>
                             <label htmlFor="iusername">Your Username</label>
-                            <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" 
+                            <input type="text" className="form-control" id="iusername" placeholder="Enter username" autoComplete="username" required
                                 value={username}
                                 onChange={e => setusername(e.target.value)}
                             />
@@ -88,8 +84,8 @@ const LoginUser = () => {
                     {
                         usernameFound ?
                         <>
-                        <label htmlFor="ipassword">Password</label>
-                        <input type="password" className="form-control" id="ipassword" placeholder="Enter password" autoComplete="current-password" required
+                        <label htmlFor="ipassword">Create Password</label>
+                        <input type="password" className="form-control" id="ipassword" placeholder="Enter new password" autoComplete="current-password" required
                             value={password}
                             onChange={e => setpassword(e.target.value)}
                         /></>
@@ -98,10 +94,10 @@ const LoginUser = () => {
                 </div>
                 {
                     signInError ?
-                    <p>Please check password and username</p>
+                    <p>Username is incorrect, please try again</p>
                     : null
                 }
-                <button className="btn btn-primary">Check</button>
+                <button className="btn btn-primary">{usernameFound ? 'Create' : 'Check'}</button>
             </form>
         )
     }else{
