@@ -46,16 +46,24 @@ const LoginUser = () => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/account/find-user', {username})
-            .then(res => {
-                if(res.data.success){
-                    setUsernameFound(true);
-                }else{
-                    console.log(res.data)
-                    setsignInError(true);
-                }
-            })
-            .catch(err => console.log(err))
+        if(!usernameFound){
+            axios.post('http://localhost:5000/account/find-user', {username})
+                .then(res => {
+                    if(res.data.success){
+                        setUsernameFound(true);
+                    }else{
+                        console.log(res.data)
+                        setsignInError(true);
+                    }
+                })
+                .catch(err => console.log(err))
+        }else {
+            const user = {
+                username,
+                password,
+            }
+            console.log(user);
+        }
     }
 
 
