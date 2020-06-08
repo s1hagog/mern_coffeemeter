@@ -16,7 +16,7 @@ const LoginUser = () => {
     const [username, setusername] = useState('');
     const [password, setpassword] = useState('');
     const [usernameFound, setUsernameFound] = useState(false);
-    let userId;
+    const [userId, setUserId] = useState('');
  
     const tokenLocalStorageKey = 'coffee_meter_project_auth_token';
 
@@ -51,8 +51,7 @@ const LoginUser = () => {
             axios.post('http://localhost:5000/account/find-user', {username})
                 .then(res => {
                     if(res.data.success){
-                        userId = res.data.message._id;
-                        console.log(userId);
+                        setUserId(res.data.message._id);
                         setUsernameFound(true);
                     }else{
                         console.log(res.data)
