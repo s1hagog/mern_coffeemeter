@@ -36,7 +36,7 @@ router.route('/find-user').post((req,res) => {
         if(users.length == 1){
             return res.send({
                 success: true,
-                message: 'User Found'
+                message: users[0]
             })
         }
     })
