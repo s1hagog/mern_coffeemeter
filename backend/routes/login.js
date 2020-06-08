@@ -2,6 +2,17 @@ const router = require('express').Router();
 const User = require('../models/users.model');
 const UserSession = require('../models/userSession.model');
 
+router.route('/update-password/:id').post((req,res) => {
+    const userId = req.params.id;
+    console.log(userId);
+    return;
+    User.findById(userId)
+        .then(user => {
+            console.log(user);
+        })
+        .catch(err => console.log('Error finding user by id:' + err));
+})
+
 router.route('/find-user').post((req,res) => {
     const {username} = req.body
 

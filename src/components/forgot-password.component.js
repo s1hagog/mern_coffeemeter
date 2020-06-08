@@ -52,6 +52,7 @@ const LoginUser = () => {
                 .then(res => {
                     if(res.data.success){
                         userId = res.data.message._id;
+                        console.log(userId);
                         setUsernameFound(true);
                     }else{
                         console.log(res.data)
@@ -64,7 +65,19 @@ const LoginUser = () => {
                 username,
                 password,
             }
-            console.log(user);
+            console.log(userId);
+            axios.post(`http://localhost:5000/account/update-password/${userId}`, {user})
+                .then(res => {
+                    // if(res.data.success){
+                    //     userId = res.data.message._id;
+                    //     setUsernameFound(true);
+                    // }else{
+                    //     console.log(res.data)
+                    //     setsignInError(true);
+                    // }
+                })
+                .catch(err => console.log(err))
+            
         }
     }
 
