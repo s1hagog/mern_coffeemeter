@@ -67,13 +67,11 @@ const LoginUser = () => {
             console.log(userId);
             axios.post(`http://localhost:5000/account/update-password/${userId}`, {user})
                 .then(res => {
-                    // if(res.data.success){
-                    //     userId = res.data.message._id;
-                    //     setUsernameFound(true);
-                    // }else{
-                    //     console.log(res.data)
-                    //     setsignInError(true);
-                    // }
+                    if(res.data.success){
+                        console.log(res.data);
+                    }else{
+                        console.log(res.data)
+                    }
                 })
                 .catch(err => console.log(err))
             
