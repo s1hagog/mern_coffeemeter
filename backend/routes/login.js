@@ -4,11 +4,16 @@ const UserSession = require('../models/userSession.model');
 
 router.route('/update-password/:id').post((req,res) => {
     const userId = req.params.id;
+    const {username, password} = req.body;
     console.log(userId);
-    return;
     User.findById(userId)
         .then(user => {
-            console.log(user);
+            user.username = username;
+            user.password = user.genereteHash(password)
+
+            user.save()
+                .then(() => res.json('Password Updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
         })
         .catch(err => console.log('Error finding user by id:' + err));
 })
