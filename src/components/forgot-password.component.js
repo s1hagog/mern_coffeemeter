@@ -9,7 +9,7 @@ import ProjectsList from './projects-list.component';
 const LoginUser = () => {
     
     const [session, setsession] = useState({});
-    const [isLoading, setisLoading] = useState(true);
+    const [isLoading, setisLoading] = useState(false);
     // const [signUpError, setsignUpError] = useState('');
     const [signInError, setsignInError] = useState(false);
     const [token, settoken] = useState('');
@@ -20,30 +20,30 @@ const LoginUser = () => {
  
     const tokenLocalStorageKey = 'coffee_meter_project_auth_token';
 
-    useEffect(() => {
-        const localSession = getFromStrorage(tokenLocalStorageKey);
-        // console.log(localSession);
-        if(localSession){
-            const localToken = localSession.token;
-            axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
-                .then(res => {
-                    // console.log(res.data);
-                    if(res.data){
-                        setsession(res.data);
-                        setisLoading(false);
-                        settoken(localToken);
-                    }else{
-                        localStorage.removeItem('coffee_meter_project_auth_token');
-                        setisLoading(false);
-                    }
-                }).catch(err => console.log('Error sending token: ' + err));
-        }else{
-            setisLoading(false);
-        }
-        return () => {
-            console.log('clean up function')
-        };
-    }, [])
+    // useEffect(() => {
+    //     const localSession = getFromStrorage(tokenLocalStorageKey);
+    //     // console.log(localSession);
+    //     if(localSession){
+    //         const localToken = localSession.token;
+    //         axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
+    //             .then(res => {
+    //                 // console.log(res.data);
+    //                 if(res.data){
+    //                     setsession(res.data);
+    //                     setisLoading(false);
+    //                     settoken(localToken);
+    //                 }else{
+    //                     localStorage.removeItem('coffee_meter_project_auth_token');
+    //                     setisLoading(false);
+    //                 }
+    //             }).catch(err => console.log('Error sending token: ' + err));
+    //     }else{
+    //         setisLoading(false);
+    //     }
+    //     return () => {
+    //         console.log('clean up function')
+    //     };
+    // }, [])
 
     const onsubmit = (e) => {
         e.preventDefault();

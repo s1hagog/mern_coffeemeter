@@ -5,8 +5,6 @@ const UserSession = require('../models/userSession.model');
 router.route('/update-password/:id').post((req,res) => {
     const userId = req.params.id;
     const {username, password} = req.body.user;
-    console.log(userId);
-    console.log(username)
     User.findById(userId)
         .then(user => {
             user.username = username;
