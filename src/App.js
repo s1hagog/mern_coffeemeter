@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import './App.css';
@@ -22,21 +22,16 @@ function App() {
         <Route path="/" exact component={LoginUser} />
         <Route path="/projects" component={ProjectsList} />
         <Route path="/edit/:id" component={EditProject} />
-        <Route path="/coffees/:id" component={ProjectCoffees}/>
+        <Route path="/coffees/:id" component={ProjectCoffees} />
         <Route path="/create" component={CreateProject} />
         <Route path="/user" component={CreateUser} />
         <Route path="/test" component={TestRoute} />
         <Route path="/account/sign-out" component={SignOutUser} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <footer>
-        <div>
-          Icons made by 
-          <a href="https://www.flaticon.com/authors/srip" title="srip"> srip </a> 
-          from<a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-        </div>
-      </footer>
+        </footer>
       </div>
-      
+
     </Router>
   );
 }
