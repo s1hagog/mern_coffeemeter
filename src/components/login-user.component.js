@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {getFromStrorage, setInStorage} from '../utils/storage';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { getFromStrorage, setInStorage } from '../utils/storage';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
 import ProjectsList from './projects-list.component';
 
 const LoginUser = () => {
-    
+
     const [session, setsession] = useState({});
     const [isLoading, setisLoading] = useState(true);
     // const [signUpError, setsignUpError] = useState('');
@@ -18,24 +18,26 @@ const LoginUser = () => {
 
     const tokenLocalStorageKey = 'coffee_meter_project_auth_token';
 
+    console.log('we loaded login user for some reason')
+
     useEffect(() => {
         const localSession = getFromStrorage(tokenLocalStorageKey);
         // console.log(localSession);
-        if(localSession){
+        if (localSession) {
             const localToken = localSession.token;
             axios.get(`http://localhost:5000/account/verify?token=${localToken}`)
                 .then(res => {
                     // console.log(res.data);
-                    if(res.data){
+                    if (res.data) {
                         setsession(res.data);
                         setisLoading(false);
                         settoken(localToken);
-                    }else{
+                    } else {
                         localStorage.removeItem('coffee_meter_project_auth_token');
                         setisLoading(false);
                     }
                 }).catch(err => console.log('Error sending token: ' + err));
-        }else{
+        } else {
             setisLoading(false);
         }
         return () => {
@@ -54,12 +56,12 @@ const LoginUser = () => {
         axios.post('http://localhost:5000/account/login', user)
             .then(res => {
                 console.log(res.data);
-                if(res.data.success){
+                if (res.data.success) {
                     setInStorage(tokenLocalStorageKey, res.data);
                     setusername('');
                     setpassword('');
                     window.location = '/';
-                }else{
+                } else {
                     setsignInError(true);
                 }
             })
@@ -67,15 +69,15 @@ const LoginUser = () => {
     }
 
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <div>
                 <p>Loading application...</p>
             </div>
         )
     }
-    if(!token){
-        return(
+    if (!token) {
+        return (
             <form onSubmit={onsubmit}>
                 <div className="form-group">
                     <label htmlFor="iusername">Username</label>
@@ -93,20 +95,20 @@ const LoginUser = () => {
                 </div>
                 {
                     signInError ?
-                    <p>Please check password and username</p>
-                    : null
+                        <p>Please check password and username</p>
+                        : null
                 }
                 <button className="btn btn-primary">Sign In</button>
             </form>
         )
-    }else{
-        if(session){
+    } else {
+        if (session) {
             console.log('we are here');
-            return(
-                <ProjectsList session={session}/>
+            return (
+                <ProjectsList session={session} />
             )
-        }else{
-            return(
+        } else {
+            return (
                 <p>Something not right here...</p>
             )
         }
