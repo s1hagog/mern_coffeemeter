@@ -38,11 +38,7 @@ const Navbar = () => {
                         }
                     </li>
                     <li className="nav-item">
-                        {
-                            (localStorage.getItem('coffee_meter_project_auth_token'))
-                                ? <Link className="nav-link" to="/">Admin Panel</Link>
-                                : null
-                        }
+                        {<Link className="nav-link" to="/">Admin Panel</Link>
                     </li>
                 </ul>
             </div>
