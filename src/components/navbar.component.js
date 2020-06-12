@@ -38,7 +38,7 @@ const Navbar = () => {
                         }
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">Admin Panel</Link>
+                        <Link className="nav-link" to="/admin">Admin Panel</Link>
                     </li>
                 </ul>
             </div>
