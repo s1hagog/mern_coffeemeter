@@ -40,7 +40,7 @@ const Navbar = () => {
                     <li className="nav-item">
                         {
                             (localStorage.getItem('coffee_meter_project_auth_token'))
-                                ? <Link className="nav-link" to="/account/sign-out">Admin Panel</Link>
+                                ? <Link className="nav-link" to="/">Admin Panel</Link>
                                 : null
                         }
                     </li>
