@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -19,22 +19,29 @@ const Navbar = () => {
                     <li className="nav-item">
                         {
                             (localStorage.getItem('coffee_meter_project_auth_token'))
-                            ? <Link className="nav-link" to="/projects">Projects List</Link>
-                            : <Link className="nav-link" to="/">Sign In</Link>
+                                ? <Link className="nav-link" to="/projects">Projects List</Link>
+                                : <Link className="nav-link" to="/">Sign In</Link>
                         }
                     </li>
                     <li className="nav-item">
                         {
                             (localStorage.getItem('coffee_meter_project_auth_token'))
-                            ? <Link className="nav-link" to="/create">Create Project</Link>
-                            : <Link className="nav-link" to="/user">Sign Up</Link>
+                                ? <Link className="nav-link" to="/create">Create Project</Link>
+                                : <Link className="nav-link" to="/user">Sign Up</Link>
                         }
                     </li>
                     <li className="nav-item">
                         {
                             (localStorage.getItem('coffee_meter_project_auth_token'))
-                            ? <Link className="nav-link" to="/account/sign-out">Sign Out</Link>
-                            : null
+                                ? <Link className="nav-link" to="/account/sign-out">Sign Out</Link>
+                                : null
+                        }
+                    </li>
+                    <li className="nav-item">
+                        {
+                            (localStorage.getItem('coffee_meter_project_auth_token'))
+                                ? <Link className="nav-link" to="/account/sign-out">Admin Panel</Link>
+                                : null
                         }
                     </li>
                 </ul>
