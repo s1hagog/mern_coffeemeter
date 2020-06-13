@@ -29,7 +29,7 @@ function App() {
         <Route path="/account/sign-out" component={SignOutUser} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <footer>
-          <p>lets have this here</p>
+          so this
         </footer>
       </div>
 
