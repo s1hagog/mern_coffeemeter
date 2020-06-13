@@ -18,8 +18,6 @@ const LoginUser = () => {
 
     const tokenLocalStorageKey = 'coffee_meter_project_auth_token';
 
-    // console.log('we loaded login user for some reason')
-
     useEffect(() => {
         const localSession = getFromStrorage(tokenLocalStorageKey);
         // console.log(localSession);
