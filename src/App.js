@@ -29,6 +29,7 @@ function App() {
         <Route path="/account/sign-out" component={SignOutUser} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <footer>
+          This is default view point
         </footer>
       </div>
 
