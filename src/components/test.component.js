@@ -3,7 +3,9 @@ import React from 'react';
 const TestRoute = () => {
 
     return (
-        <p>This is test component</p>
+        <div class="alert alert-primary" role="alert">
+            A simple primary alert—check it out!
+</div>
     );
 }
 
