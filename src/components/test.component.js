@@ -3,7 +3,7 @@ import React from 'react';
 const TestRoute = () => {
 
     return (
-        <p></p>
+        <p>This is test component</p>
     );
 }
 
