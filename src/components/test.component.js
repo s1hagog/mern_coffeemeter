@@ -4,7 +4,7 @@ const TestRoute = () => {
 
     return (
         <div className="alert alert-primary" role="alert">
-            This is a test component! nothing to see heres
+            This is a test component!
         </div>
     );
 }
