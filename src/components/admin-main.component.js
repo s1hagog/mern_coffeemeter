@@ -7,4 +7,4 @@ const AdminMain = () => {
 
 }
 
-// export default AdminMain;
+export default AdminMain;
