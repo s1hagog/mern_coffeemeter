@@ -6,3 +6,5 @@ import axios from 'axios';
 const AdminMain = () => {
 
 }
+
+export default AdminMain;
