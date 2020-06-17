@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const AdminMain = () => {
+
+    const [users,]
+
+
     return (
         <div>
             This is admin comp
