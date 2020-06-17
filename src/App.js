@@ -13,6 +13,7 @@ import TestRoute from './components/test.component';
 import LoginUser from './components/login-user.component';
 import SignOutUser from './components/sign-out-user.component';
 import ForgotPassword from './components/forgot-password.component';
+import AdminMain from './components/admin-main.component';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/test" component={TestRoute} />
         <Route path="/account/sign-out" component={SignOutUser} />
         <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/admin" component={} />
+        <Route path="/admin" component={AdminMain} />
         <footer>Developed by Alexander Moshak v0.0.1</footer>
       </div>
 
