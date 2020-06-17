@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const AdminMain = () => {
-
+    return (
+        
+    );
 }
 
 export default AdminMain;
