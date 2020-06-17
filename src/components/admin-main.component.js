@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const AdminMain = () => {
 
-    const [users, setUsers] = useEffect([]);
+    const [users, setUsers] = useState([]);
 
     return (
         <div>
