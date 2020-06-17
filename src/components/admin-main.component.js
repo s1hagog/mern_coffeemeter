@@ -6,7 +6,7 @@ import axios from 'axios';
 const AdminMain = () => {
     return (
         <div>
-
+            This is admin comp
         </div>
     );
 }
