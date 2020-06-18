@@ -25,7 +25,7 @@
 
 import React from 'react';
 
-const TestRoute = () => {
+const AdminMain = () => {
 
     return (
         <div className="alert alert-primary" role="alert">
@@ -34,4 +34,4 @@ const TestRoute = () => {
     );
 }
 
-export default TestRoute;
+export default AdminMain;
