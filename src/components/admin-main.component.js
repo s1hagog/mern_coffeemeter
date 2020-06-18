@@ -10,7 +10,8 @@ const AdminMain = () => {
         axios.get('http://localhost:5000/users/all')
             .then(res => {
                 this.setState({ projects: res.data });
-            }).catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
     }, []);
 
     return (
