@@ -29,7 +29,7 @@ const AdminMain = () => {
 
     return (
         <div className="alert alert-primary" role="alert">
-            This is a test component!
+            This is a test component! WHYYYY
         </div>
     );
 }
