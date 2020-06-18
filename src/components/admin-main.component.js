@@ -7,7 +7,7 @@ const AdminMain = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-
+        console.log('searching for users')
     });
 
     return (
