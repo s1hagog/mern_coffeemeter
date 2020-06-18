@@ -6,6 +6,10 @@ const AdminMain = () => {
 
     const [users, setUsers] = useState([]);
 
+    useEffect(() => {
+
+    }, []);
+
     return (
         <div>
             This is admin comp
