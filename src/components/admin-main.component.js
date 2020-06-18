@@ -7,7 +7,10 @@ const AdminMain = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        console.log('searching for users')
+        axios.get('http://localhost:5000/projects/user/' + this.props.session.userId)
+            .then(res => {
+                this.setState({ projects: res.data });
+            }).catch(err => console.log(err));
     });
 
     return (
