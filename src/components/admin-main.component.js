@@ -9,7 +9,7 @@ const AdminMain = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/users/all')
             .then(res => {
-                this.setState({ users: res.data });
+                this.setState(res.data);
             })
             .catch(err => console.log(err));
     }, []);
