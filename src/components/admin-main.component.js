@@ -6,13 +6,13 @@ const AdminMain = () => {
 
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/users/all')
-            .then(res => {
-                this.setState(res.data);
-            })
-            .catch(err => console.log(err));
-    }, []);
+    // useEffect(() => {
+    //     axios.get('http://localhost:5000/users/all')
+    //         .then(res => {
+    //             this.setState(res.data);
+    //         })
+    //         .catch(err => console.log(err));
+    // }, []);
 
     return (
         <div>
