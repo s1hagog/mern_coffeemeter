@@ -8,7 +8,7 @@ const AdminMain = () => {
 
     useEffect(() => {
 
-    }, []);
+    });
 
     return (
         <div>
