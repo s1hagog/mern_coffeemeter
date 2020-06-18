@@ -7,7 +7,7 @@ const AdminMain = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users/all' + this.props.session.userId)
+        axios.get('http://localhost:5000/users/all')
             .then(res => {
                 this.setState({ projects: res.data });
             }).catch(err => console.log(err));
