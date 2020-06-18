@@ -29,7 +29,7 @@ function App() {
         <Route path="/test" component={TestRoute} />
         <Route path="/account/sign-out" component={SignOutUser} />
         <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/admin" component={TestRoute} />
+        <Route path="/admin" component={AdminMain} />
         <footer>Developed by Alexander Moshak v0.0.1</footer>
       </div>
 
