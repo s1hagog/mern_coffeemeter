@@ -11,7 +11,7 @@ const AdminMain = () => {
             .then(res => {
                 this.setState({ projects: res.data });
             }).catch(err => console.log(err));
-    });
+    }, []);
 
     return (
         <div>
