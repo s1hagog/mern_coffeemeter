@@ -22,16 +22,3 @@
 // }
 
 // export default AdminMain;
-
-import React from 'react';
-
-const AdminMain = () => {
-
-    return (
-        <div className="alert alert-primary" role="alert">
-            This is a test component!
-        </div>
-    );
-}
-
-export default AdminMain;
