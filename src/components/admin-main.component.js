@@ -7,7 +7,7 @@ const AdminMain = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users/all')
+        axios.get('https://randomuser.me/api/')
             .then(res => {
                 this.setState(res.data);
             })
