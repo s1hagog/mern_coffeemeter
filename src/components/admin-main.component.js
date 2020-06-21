@@ -16,7 +16,7 @@ const AdminMain = () => {
 
     return (
         <div>
-            This is admin comp
+            this was server issus
         </div>
     );
 }
