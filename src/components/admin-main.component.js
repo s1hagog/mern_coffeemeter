@@ -16,7 +16,7 @@ const AdminMain = () => {
 
     return (
         <div>
-            this was server iss
+            {/* this was server iss */}
         </div>
     );
 }
