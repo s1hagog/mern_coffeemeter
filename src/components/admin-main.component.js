@@ -15,9 +15,7 @@ const AdminMain = () => {
     }, []);
 
     return (
-        <div>
-            this was server issa
-        </div>
+        <p></p>
     );
 }
 
