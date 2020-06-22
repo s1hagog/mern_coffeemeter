@@ -15,7 +15,7 @@ const AdminMain = () => {
     }, []);
 
     return (
-        <div>defaul</div>
+        <div>defausdadl</div>
     );
 }
 
