@@ -16,7 +16,7 @@ const AdminMain = () => {
 
     return (
         <div>
-            this was server issus
+            this was server issuspam poam am
         </div>
     );
 }
