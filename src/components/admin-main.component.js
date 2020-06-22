@@ -15,7 +15,7 @@ const AdminMain = () => {
     }, []);
 
     return (
-        <div>HAHAHAHH</div>
+        <div>AdminMain</div>
     );
 }
 
