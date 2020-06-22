@@ -15,7 +15,7 @@ const AdminMain = () => {
     }, []);
 
     return (
-        <div>default expo</div>
+        <div>defaul</div>
     );
 }
 
