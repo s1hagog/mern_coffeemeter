@@ -15,7 +15,7 @@ const AdminMain = () => {
     }, []);
 
     return (
-        <p></p>
+        <div></div>
     );
 }
 
